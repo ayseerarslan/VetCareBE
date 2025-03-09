@@ -2,14 +2,12 @@ package erarslan.ayse.VetCare.api;
 
 import erarslan.ayse.VetCare.business.abstracts.IVaccineService;
 import erarslan.ayse.VetCare.dto.request.vaccine.VaccineSaveRequest;
-import erarslan.ayse.VetCare.dto.request.vaccine.VaccineUpdateRequest;
 import erarslan.ayse.VetCare.dto.response.vaccine.VaccineResponse;
 import erarslan.ayse.VetCare.entitiy.Vaccine;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -49,12 +47,6 @@ public class VaccineController {
     @ResponseStatus(HttpStatus.CREATED)
     public VaccineResponse save(@Valid @RequestBody VaccineSaveRequest vaccineSaveRequest) {
         return this.vaccineService.save(vaccineSaveRequest);
-    }
-
-    @PutMapping("/update/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public VaccineResponse update(@Valid @PathVariable("id") int id, @RequestBody VaccineUpdateRequest vaccineUpdateRequest) {
-        return this.vaccineService.update(id, vaccineUpdateRequest);
     }
 
     @DeleteMapping("/delete/{id}")

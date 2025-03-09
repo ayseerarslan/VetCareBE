@@ -5,7 +5,6 @@ import erarslan.ayse.VetCare.core.modelmapper.IModelMapperService;
 import erarslan.ayse.VetCare.dao.AnimalRepo;
 import erarslan.ayse.VetCare.dao.VaccineRepo;
 import erarslan.ayse.VetCare.dto.request.vaccine.VaccineSaveRequest;
-import erarslan.ayse.VetCare.dto.request.vaccine.VaccineUpdateRequest;
 import erarslan.ayse.VetCare.dto.response.vaccine.VaccineResponse;
 import erarslan.ayse.VetCare.entitiy.Vaccine;
 import lombok.RequiredArgsConstructor;
@@ -38,17 +37,6 @@ public class VaccineManager implements IVaccineService {
         return this.modelMapperService.forResponse().map(this.vaccineRepo.save(saveVac), VaccineResponse.class);
     }
 
-    @Override
-    public VaccineResponse update(long id, VaccineUpdateRequest vaccineUpdateRequest) {
-        Vaccine updateVac = this.modelMapperService.forRequest().map(vaccineUpdateRequest, Vaccine.class);
-        updateVac.setId(id);
-
-        if (this.vaccineRepo.existsByCode(updateVac.getCode())){
-            throw new IllegalArgumentException("A vaccine with this code already exists, please enter a different code.");
-        }
-
-        return this.modelMapperService.forResponse().map(this.vaccineRepo.save(updateVac), VaccineResponse.class);
-    }
 
     @Override
     public void delete(long id) {

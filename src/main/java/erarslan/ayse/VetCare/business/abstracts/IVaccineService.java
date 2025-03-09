@@ -13,6 +13,5 @@ public interface IVaccineService {
     VaccineResponse update(long id, VaccineUpdateRequest vaccineUpdateRequest);
     void delete(long id);
     List<Vaccine> findByAnimal(long id);
-    List<Vaccine> findVaccinesInDateRange(LocalDate protectionStartDate, LocalDate protectionFinishDate);
     List<Vaccine> findAll();
 }

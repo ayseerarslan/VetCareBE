@@ -36,12 +36,12 @@ public class AppointmentManager implements IAppointmentService {
         Appointment saveAppointment = this.modelMapperService.forRequest().map(appointmentSaveRequest, Appointment.class);
         if (this.availableDateRepo.existsByAvailableDate(LocalDate.from(saveAppointment.getAppointmentDate()))){
             if (this.appointmentRepo.existsByAppointmentDate(saveAppointment.getAppointmentDate())){
-                throw new IllegalArgumentException("Girilen saatte başka bir randevu mevcuttur.");
+                throw new IllegalArgumentException("Another appointment is available at the time entered.");
             } else {
                 return this.modelMapperService.forResponse().map(this.appointmentRepo.save(saveAppointment), AppointmentResponse.class);
             }
         } else {
-            throw new IllegalArgumentException("Doktor bu tarihte çalışmamaktadır!");
+            throw new IllegalArgumentException("The doctor is not working on this date!");
         }
     }
 
@@ -51,28 +51,18 @@ public class AppointmentManager implements IAppointmentService {
         updateAppointment.setId(id);
         if (this.availableDateRepo.existsByAvailableDate(LocalDate.from(updateAppointment.getAppointmentDate()))){
             if (this.appointmentRepo.existsByAppointmentDate(updateAppointment.getAppointmentDate())){
-                throw new IllegalArgumentException("Girilen saatte başka bir randevu mevcuttur.");
+                throw new IllegalArgumentException("Another appointment is available at the time entered.");
             } else {
                 return this.modelMapperService.forResponse().map(this.appointmentRepo.save(updateAppointment), AppointmentResponse.class);
             }
         } else {
-            throw new IllegalArgumentException("Doktor bu tarihte çalışmamaktadır!");
+            throw new IllegalArgumentException("The doctor is not working on this date!");
         }
     }
 
     @Override
     public void delete(long id) {
         this.appointmentRepo.delete(this.getById(id));
-    }
-
-    @Override
-    public List<Appointment> findByDateAndDoctor(LocalDateTime startDate, LocalDateTime endDate, Doctor doctor) {
-        return this.appointmentRepo.findByAppointmentDateBetweenAndDoctor(startDate, endDate, doctor);
-    }
-
-    @Override
-    public List<Appointment> findByDateAndAnimal(LocalDateTime startDate, LocalDateTime endDate, Animal animal) {
-        return this.appointmentRepo.findByAppointmentDateBetweenAndAnimal(startDate, endDate, animal);
     }
 
     @Override

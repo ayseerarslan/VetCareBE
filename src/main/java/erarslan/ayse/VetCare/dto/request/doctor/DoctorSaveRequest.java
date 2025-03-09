@@ -10,24 +10,24 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class DoctorSaveRequest {
-    @NotNull(message = "Doktor adı boş bırakılamaz")
+    @NotNull(message = "Doctor name cannot be blank")
     private String name;
-    @NotNull(message = "Doktor telefon numarası bırakılamaz")
+    @NotNull(message = "Doctor phone cannot be blank")
     private String phone;
-    @NotNull(message = "Doktor mail adresi boş bırakılamaz")
+    @NotNull(message = "Doctor mail cannot be blank")
     @Email
     private String mail;
-    @NotNull(message = "Doktor adres bilgisi boş bırakılamaz")
+    @NotNull(message = "Doctor address cannot be blank")
     private String address;
-    @NotNull(message = "Doktor şehir bilgisi boş bırakılamaz")
+    @NotNull(message = "Doctor city cannot be blank")
     private String city;
     /*
     {
-        "name": "Cahit",
+        "name": "Ayse",
         "phone": "5359876582",
-        "mail": "isaoglu@cahit.com",
-        "address": "Merkez cad. Posta sok. No 1",
-        "city": "İstanbul"
+        "mail": "erarslan@ayse.com",
+        "address": "7000 JFK boulevard east",
+        "city": "new york"
 }
      */
 }

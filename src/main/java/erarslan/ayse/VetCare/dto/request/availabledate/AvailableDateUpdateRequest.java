@@ -16,7 +16,7 @@ public class AvailableDateUpdateRequest {
     @Temporal(TemporalType.DATE)
     @NotNull
     private LocalDate availableDate;
-    @NotNull(message = "Doktor ID'si boş olamaz")
+    @NotNull(message = "Doctor ID cannot be blank.")
 
     private Doctor doctor;
 }

@@ -16,11 +16,11 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class AppointmentSaveRequest {
     @Temporal(TemporalType.DATE)
-    @NotNull(message = "Randevu günü boş bırakılamaz")
+    @NotNull(message = "Appointment date cannot be blank.")
     private LocalDateTime appointmentDate;
-    @NotNull(message = "Randevuya gelecek olan hayvanın ID'si boş bırakılamaz")
+    @NotNull(message = "The ID of the animal attending the appointment cannot be left blank.")
     private Animal animal;
-    @NotNull(message = "Randevuya gelecek olan doktorun ID'si boş bırakılamaz")
+    @NotNull(message = "The ID of the doctor attending the appointment cannot be left blank.")
     private Doctor doctor;
 
     /*

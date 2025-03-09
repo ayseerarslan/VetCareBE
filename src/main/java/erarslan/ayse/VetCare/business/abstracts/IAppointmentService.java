@@ -14,8 +14,5 @@ public interface IAppointmentService {
     AppointmentResponse save(AppointmentSaveRequest appointmentSaveRequest);
     AppointmentResponse update(long id, AppointmentUpdateRequest appointmentUpdateRequest);
     void delete(long id);
-    List<Appointment> findByDateAndDoctor(LocalDateTime startDate, LocalDateTime endDate, Doctor doctor);
-    List<Appointment> findByDateAndAnimal(LocalDateTime startDate, LocalDateTime endDate, Animal animal);
-
     List<Appointment> findAll();
 }

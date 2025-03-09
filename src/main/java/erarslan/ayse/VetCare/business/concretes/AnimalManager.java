@@ -27,15 +27,6 @@ public class AnimalManager implements IAnimalService {
     public Animal getById(long id) {
         return this.animalRepo.findById(id);
     }
-    @Override
-    public Animal getByName(String name) {
-        return this.animalRepo.findByName(name);
-    }
-
-    @Override
-    public List<Animal> findByCustomer(long id) {
-       return this.animalRepo.findByCustomer(this.customerRepo.findById(id));
-    }
 
     @Override
     public AnimalResponse save(AnimalSaveRequest animalSaveRequest) {
@@ -47,9 +38,9 @@ public class AnimalManager implements IAnimalService {
                 saveAnimal.getGender(),
                 saveAnimal.getColor(),
                 saveAnimal.getDateOfBirth())){
-            throw new IllegalArgumentException("Girilen bilgiler ile birebir uyuşan bir hayvan mevcut");
+            throw new IllegalArgumentException("There is an animal that exactly matches the provided information.");
         } else if (!("MALE".equals(saveAnimal.getGender()) || "FEMALE".equals(saveAnimal.getGender()))) {
-            throw new IllegalArgumentException("Cinsiyet sadece MALE veya FEMALE olabilir");
+            throw new IllegalArgumentException("Gender can only be MALE or FEMALE.");
         }
         return modelMapperService.forResponse().map(this.animalRepo.save(saveAnimal), AnimalResponse.class);
     }
@@ -65,9 +56,9 @@ public class AnimalManager implements IAnimalService {
                 updateAnimal.getGender(),
                 updateAnimal.getColor(),
                 updateAnimal.getDateOfBirth())){
-            throw new IllegalArgumentException("Girilen bilgiler ile birebir uyuşan bir hayvan mevcut");
+            throw new IllegalArgumentException("There is an animal that exactly matches the provided information.");
         } else if (!("MALE".equals(updateAnimal.getGender()) || "FEMALE".equals(updateAnimal.getGender()))) {
-            throw new IllegalArgumentException("Cinsiyet sadece MALE veya FEMALE olabilir");
+            throw new IllegalArgumentException("Gender can only be MALE or FEMALE.");
         }
         return modelMapperService.forResponse().map(this.animalRepo.save(updateAnimal), AnimalResponse.class);
     }

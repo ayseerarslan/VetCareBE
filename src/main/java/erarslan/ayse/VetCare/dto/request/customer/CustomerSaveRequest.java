@@ -11,25 +11,24 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CustomerSaveRequest {
-    @NotNull(message = "Müşteri adı boş bırakılamaz")
+    @NotNull(message = "Customer name cannot be blank")
     private String name;
-    @NotNull(message = "Müşteri telefon numarası boş bırakılamaz")
+    @NotNull(message = "Customer phone cannot be blank")
     private String phone;
     @Email
-    @NotNull(message = "Müşteri mail adresi boş bırakılamaz")
+    @NotNull(message = "Customer mail cannot be blank")
     private String mail;
-    @NotNull(message = "Müşteri adres bilgisi boş bırakılamaz")
+    @NotNull(message = "Customer address cannot be blank")
     private String address;
-    @NotNull(message = "Müşteri şehir bilgisi boş bırakılamaz")
-    @NotBlank(message = "Müşteri şehir bilgisi boş bırakılamaz")
+    @NotNull(message = "Customer city cannot be blank")
     private String city;
     /*
     {
-        "name": "Cahit",
+        "name": "John",
         "phone": "5359876582",
-        "mail": "isaoglu@cahit.com",
-        "address": "Merkez cad. Posta sok. No 1",
-        "city": "İstanbul"
+        "mail": "asdf@john.com",
+        "address": "Blackqood Sq, Apt 7",
+        "city": "Cork"
 }
      */
 }

@@ -11,15 +11,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CustomerUpdateRequest {
-    @NotNull(message = "Müşteri adı boş bırakılamaz")
+    @NotNull(message = "Customer name cannot be blank")
     private String name;
-    @NotNull(message = "Müşteri telefon numarası boş bırakılamaz")
+    @NotNull(message = "Customer phone cannot be blank")
     private String phone;
     @Email
-    @NotNull(message = "Müşteri mail adresi boş bırakılamaz")
+    @NotNull(message = "Customer mail cannot be blank")
     private String mail;
-    @NotNull(message = "Müşteri adres bilgisi boş bırakılamaz")
+    @NotNull(message = "Customer address cannot be blank")
     private String address;
-    @NotNull(message = "Müşteri şehir bilgisi boş bırakılamaz")
+    @NotNull(message = "Customer city cannot be blank")
     private String city;
 }

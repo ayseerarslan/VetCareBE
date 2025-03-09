@@ -31,7 +31,4 @@ public class Appointment {
     @JoinColumn(name = "appointment_doctor_id", referencedColumnName = "doctor_id")
     private Doctor doctor;
 
-    @OneToOne(mappedBy = "appointment", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-    @JsonBackReference
-    private Report report;
 }

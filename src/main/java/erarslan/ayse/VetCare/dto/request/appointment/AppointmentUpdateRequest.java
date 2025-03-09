@@ -18,8 +18,8 @@ public class AppointmentUpdateRequest {
     @Temporal(TemporalType.DATE)
     @NotNull
     private LocalDateTime appointmentDate;
-    @NotNull(message = "Randevuya gelecek olan hayvanın ID'si boş bırakılamaz")
+    @NotNull(message = "The ID of the animal attending the appointment cannot be left blank.")
     private Animal animal;
-    @NotNull(message = "Randevuya gelecek olan doktorun ID'si boş bırakılamaz")
+    @NotNull(message = "The ID of the doctor attending the appointment cannot be left blank.")
     private Doctor doctor;
 }

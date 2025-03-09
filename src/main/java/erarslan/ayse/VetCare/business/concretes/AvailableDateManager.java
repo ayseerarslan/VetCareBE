@@ -30,7 +30,7 @@ public class AvailableDateManager implements IAvailableDateService {
         AvailableDate saveAvDate = this.modelMapperService.forRequest().map(availableDateSaveRequest, AvailableDate.class);
         System.out.println(saveAvDate.getDoctor().getId());
         if (this.availableDateRepo.existsByAvailableDateAndDoctor(saveAvDate.getAvailableDate(), saveAvDate.getDoctor())) {
-            throw new IllegalArgumentException(saveAvDate.getDoctor().getName() + " doktor " + saveAvDate.getAvailableDate() + " tarihinde zaten çalışıyor, lütfen farkı bir tarih giriniz");
+            throw new IllegalArgumentException(saveAvDate.getDoctor().getName() + " doctor " + saveAvDate.getAvailableDate() + " working on that date, please enter a different date.");
         }
         return this.modelMapperService.forResponse().map(this.availableDateRepo.save(saveAvDate), AvailableDateResponse.class);
     }
@@ -40,7 +40,7 @@ public class AvailableDateManager implements IAvailableDateService {
         AvailableDate updateAvDate = this.modelMapperService.forRequest().map(availableDateUpdateRequest, AvailableDate.class);
         updateAvDate.setId(id);
         if (this.availableDateRepo.existsByAvailableDateAndDoctor(updateAvDate.getAvailableDate(), updateAvDate.getDoctor())) {
-            throw new IllegalArgumentException("Doktor " + updateAvDate.getAvailableDate() + " tarihinde zaten çalışıyor, lütfen farkı bir tarih giriniz");
+            throw new IllegalArgumentException("Doctor " + updateAvDate.getAvailableDate() + " working on that date, please enter a different date.");
         }
         return this.modelMapperService.forResponse().map(this.availableDateRepo.save(updateAvDate), AvailableDateResponse.class);
     }

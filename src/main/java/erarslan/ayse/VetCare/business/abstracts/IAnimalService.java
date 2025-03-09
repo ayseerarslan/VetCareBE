@@ -9,8 +9,6 @@ import java.util.List;
 
 public interface IAnimalService {
     Animal getById(long id);
-    Animal getByName(String name);
-    List<Animal> findByCustomer(long id);
     AnimalResponse save(AnimalSaveRequest animalSaveRequest);
     AnimalResponse update(long id, AnimalUpdateRequest animalUpdateRequest);
     void delete(long id);

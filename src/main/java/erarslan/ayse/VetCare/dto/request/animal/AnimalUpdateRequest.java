@@ -15,19 +15,19 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AnimalUpdateRequest {
-    @NotNull(message = "Hayvan ismi boş bırakılamaz")
+    @NotNull(message = "Animal name cannot be left blank.")
     private String name;
-    @NotNull(message = "Hayvan türü boş bırakılamaz")
+    @NotNull(message = "Animal species cannot be left blank.")
     private String species;
-    @NotNull(message = "Hayvanın cinsi boş bırakılamaz")
+    @NotNull(message = "Animal breed cannot be left blank.")
     private String breed;
-    @NotNull(message = "Hayvan cinsiyeti boş bırakılamaz")
+    @NotNull(message = "Animal gender cannot be left blank.")
     private String gender;
     private String color;
     @Temporal(TemporalType.DATE)
     @Past
     private LocalDate dateOfBirth;
-    @NotNull(message = "Sahipsiz hayvan kayıt edilemez")
+    @NotNull(message = "An ownerless animal cannot be registered.")
     @Positive
     private Customer customer;
 }

@@ -25,16 +25,12 @@ public class CustomerManager implements ICustomerService {
         return this.customerRepo.findById(id);
     }
 
-    @Override
-    public Customer getByName(String name) {
-        return this.customerRepo.findByName(name);
-    }
 
     @Override
     public CustomerResponse save(CustomerSaveRequest customerSaveRequest) {
         Customer saveCustomer = this.modelMapperService.forRequest().map(customerSaveRequest, Customer.class);
         if (this.customerRepo.existsByMail(saveCustomer.getMail())){
-            throw new IllegalArgumentException("Mail adresi daha önce girilmiştir, lütfen farklı bir adres giriniz");
+            throw new IllegalArgumentException("The email address has already been entered, please enter a different address.");
         }
         return this.modelMapperService.forResponse().map(this.customerRepo.save(saveCustomer), CustomerResponse.class);
     }
@@ -45,7 +41,7 @@ public class CustomerManager implements ICustomerService {
         updateCustomer.setId(id);
 
         if (this.customerRepo.existsByMail(updateCustomer.getMail()) && !this.customerRepo.findById(id).getMail().equals(updateCustomer.getMail())){
-            throw new IllegalArgumentException("Mail adresi daha önce girilmiştir, lütfen farklı bir adres giriniz");
+            throw new IllegalArgumentException("The email address has already been entered, please enter a different address.");
         }
         return this.modelMapperService.forResponse().map(this.customerRepo.save(updateCustomer), CustomerResponse.class);
     }

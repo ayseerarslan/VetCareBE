@@ -30,7 +30,7 @@ public class DoctorManager implements IDoctorService {
         System.out.println(saveDoc.getMail());
 
         if (this.doctorRepo.existsByMail(saveDoc.getMail())){
-            throw new IllegalArgumentException("Mail adresi daha önce girilmiştir, lütfen farklı bir adres giriniz");
+            throw new IllegalArgumentException("The email address has already been entered, please enter a different address.");
         }
         return this.modelMapperService.forResponse().map(this.doctorRepo.save(saveDoc), DoctorResponse.class);
     }
@@ -40,7 +40,7 @@ public class DoctorManager implements IDoctorService {
         Doctor updateDoc = this.modelMapperService.forRequest().map(doctorUpdateRequest, Doctor.class);
         updateDoc.setId(id);
         if (this.doctorRepo.existsByMail(updateDoc.getMail()) && !this.doctorRepo.findById(id).getMail().equals(updateDoc.getMail())){
-            throw new IllegalArgumentException("Mail adresi daha önce girilmiştir, lütfen farklı bir adres giriniz");
+            throw new IllegalArgumentException("The email address has already been entered, please enter a different address.");
         }
         return modelMapperService.forResponse().map(this.doctorRepo.save(updateDoc), DoctorResponse.class);
     }

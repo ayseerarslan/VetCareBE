@@ -32,7 +32,7 @@ public class VaccineManager implements IVaccineService {
         Vaccine saveVac = this.modelMapperService.forRequest().map(vaccineSaveRequest, Vaccine.class);
 
         if (this.vaccineRepo.existsByNameAndCode(saveVac.getName(), saveVac.getCode()) && saveVac.getProtectionFinishDate().isAfter(LocalDate.now())){
-            throw new IllegalArgumentException("Bu aşının koruma tarihi henüz sona ermemiş");
+            throw new IllegalArgumentException("The protection date of this vaccine has not yet expired.");
         }
 
         return this.modelMapperService.forResponse().map(this.vaccineRepo.save(saveVac), VaccineResponse.class);
@@ -44,7 +44,7 @@ public class VaccineManager implements IVaccineService {
         updateVac.setId(id);
 
         if (this.vaccineRepo.existsByCode(updateVac.getCode())){
-            throw new IllegalArgumentException("Bu koda sahip bir aşı mevcut, lütfen farklı bir kod giriniz");
+            throw new IllegalArgumentException("A vaccine with this code already exists, please enter a different code.");
         }
 
         return this.modelMapperService.forResponse().map(this.vaccineRepo.save(updateVac), VaccineResponse.class);
@@ -58,12 +58,6 @@ public class VaccineManager implements IVaccineService {
     @Override
     public List<Vaccine> findByAnimal(long id) {
         return vaccineRepo.findByAnimal(this.animalRepo.findById(id));
-    }
-
-    @Override
-    public List<Vaccine> findVaccinesInDateRange(LocalDate protectionStartDate, LocalDate protectionFinishDate) {
-        return vaccineRepo.findByProtectionStartDateGreaterThanEqualAndProtectionFinishDateLessThanEqual(
-                protectionStartDate, protectionFinishDate);
     }
 
     @Override

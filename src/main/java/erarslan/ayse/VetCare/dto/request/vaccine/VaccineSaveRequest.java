@@ -14,17 +14,17 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class VaccineSaveRequest {
-    @NotNull(message = "Aşı adı boş bırakılamaz")
+    @NotNull(message = "The vaccine name cannot be left blank.")
     private String name;
-    @NotNull(message = "Aşı kodu boş bırakılamaz")
+    @NotNull(message = "The vaccine code cannot be left blank")
     private String code;
     @Temporal(TemporalType.DATE)
-    @NotNull(message = "Bağışıklık başlangıç tarihi boş bırakılamaz")
+    @NotNull(message = "The protection start date cannot be left blank.")
     private LocalDate protectionStartDate;
     @Temporal(TemporalType.DATE)
-    @NotNull(message = "Bağışıklık bitiş tarihi boş bırakılamaz")
+    @NotNull(message = "The protection finish date cannot be left blank.")
     private LocalDate protectionFinishDate;
-    @NotNull(message = "Aşının yapıldığı hayvanın ID'si boş bırakılamaz")
+    @NotNull(message = "The ID of the animal that received the vaccine cannot be left blank.")
     private Animal animal;
 
     /*
